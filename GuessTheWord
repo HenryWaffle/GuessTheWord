@@ -1,0 +1,41 @@
+print("WELCOME TO WORDLE")
+print("YOU WILL HAVE 6 TRIES TO GUESS THE WORD AND THE WORD WILL ALWAYS BE 5 LETTERS")
+print("HERE ARE THE RULES:")
+print("IF THE LETTER IS IN THE WORD AND IS IN THE CORRECT POSITION\nTHE LETTER WILL APPEAR IN CAPITAL LETTERS.\nIF THE LETTER IS IN THE WORD\nBUT IS IN THE WRONG POSITION\nTHE LETTER WILL APPEAR IN LOWERCASE.\nIF THE LETTER IS NOT IN THE WORD\nTHE LETTER WILL NOT APPEAR.")
+
+import random
+LIST = ['ABUSE', 'ADULT', 'AGENT', 'ANGER', 'APPLE', 'AWARD', 'BASIS', 'BEACH', 'BIRTH', 'BLOCK', 'BLOOD', 'BOARD', 'BRAIN', 'BREAD', 'BREAK', 'BROWN', 'BUYER', 'CAUSE', 'CHAIN', 'CHAIR', 'CHEST', 'CHIEF', 'CHILD', 'CHINA', 'CLAIM', 'CLASS', 'CLOCK', 'COACH', 'COAST', 'COURT', 'COVER', 'CREAM', 'CRIME', 'CROSS', 'CROWD', 'CROWN', 'CYCLE', 'DANCE', 'DEATH', 'DEPTH', 'DOUBT', 'DRAFT', 'DRAMA', 'DREAM', 'DRESS', 'DRINK', 'DRIVE', 'EARTH', 'ENEMY', 'ENTRY', 'ERROR', 'EVENT', 'FAITH', 'FAULT', 'FIELD', 'FIGHT', 'FINAL', 'FLOOR', 'FOCUS', 'FORCE', 'FRAME', 'FRONT', 'FRUIT', 'GLASS', 'GRANT', 'GRASS', 'GREEN', 'GROUP', 'GUIDE', 'HEART',  'HORSE', 'HOTEL', 'HOUSE', 'IMAGE', 'INDEX', 'INPUT', 'ISSUE', 'JAPAN', 'JONES', 'JUDGE', 'KNIFE',  'LAYER', 'LEVEL','LIGHT', 'LIMIT', 'LUNCH', 'MAJOR', 'MARCH', 'MATCH', 'METAL', 'MODEL', 'MONEY', 'MONTH', 'MOTOR', 'MOUTH', 'MUSIC', 'NIGHT', 'NOISE', 'NORTH', 'NOVEL', 'NURSE', 'OFFER', 'ORDER', 'OTHER', 'OWNER', 'PANEL', 'PAPER', 'PARTY', 'PEACE', 'PETER', 'PHASE', 'PHONE', 'PIECE', 'PILOT', 'PITCH', 'PLACE', 'PLANE', 'PLANT', 'PLATE', 'POINT', 'POUND', 'POWER', 'PRESS', 'PRICE', 'PRIDE', 'PRIZE', 'PROOF', 'QUEEN', 'RADIO', 'RANGE', 'RATIO', 'REPLY', 'RIGHT', 'RIVER', 'ROUND', 'ROUTE', 'RUGBY', 'SCALE', 'SCENE', 'SCOPE', 'SCORE', 'SENSE', 'SHAPE', 'SHARE', 'SHEEP', 'SHEET', 'SHIFT', 'SHIRT', 'SHOCK', 'SIGHT',  'SKILL', 'SLEEP', 'SMILE', 'SMITH', 'SMOKE', 'SOUND', 'SOUTH', 'SPACE', 'SPEED', 'SPITE', 'SPORT', 'SQUAD', 'STAFF', 'STAGE', 'START', 'STATE', 'STEAM', 'STEEL', 'STOCK', 'STONE', 'STORE', 'STUDY', 'STUFF', 'STYLE', 'SUGAR', 'TABLE', 'TASTE',  'THEME', 'THING', 'TITLE', 'TOTAL', 'TOUCH', 'TOWER', 'TRACK', 'TRADE', 'TRAIN', 'TREND', 'TRIAL', 'TRUST', 'TRUTH', 'UNCLE', 'UNION', 'UNITY', 'VALUE', 'VIDEO', 'VISIT', 'VOICE', 'WASTE', 'WATCH', 'WATER', 'WHILE', 'WHITE', 'WHOLE', 'WOMAN', 'WORLD', 'YOUTH']
+ANSWER = random.choices(LIST)
+ANSWER = ANSWER[0]
+ROUNDS = 6
+
+for round in range(ROUNDS):
+    print("round:",round+1)
+    guess = str(input("Enter your guess: "))
+    result = ""
+    if len(guess) == len(ANSWER):
+        if guess.upper() == ANSWER.upper():
+            print(ANSWER)
+            print("YOU WIN")
+            break
+
+        for index in range(len(guess)):
+
+            if guess[index].upper() == ANSWER[index]:
+                result += guess[index].upper()
+
+            character_set = set(ANSWER)
+
+            if guess[index].upper() in character_set and guess[index].upper() != ANSWER[index]:
+                result += guess[index].lower()
+            
+            if guess[index].upper() not in character_set:
+                result += '_'
+
+        print(result)
+
+    else:
+        print("that is not a",len(ANSWER),"letter word")
+else:
+    print("The answer was",ANSWER)
+    print("YOU LOSE")
